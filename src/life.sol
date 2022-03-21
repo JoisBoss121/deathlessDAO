@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity >=0.8.0;
 
-import "@solmate/tokens/ERC20.sol";
+import "../lib/solmate/src/tokens/ERC20.sol";
 
 contract Life is ERC20 {
     address public immutable owner;
@@ -13,7 +13,7 @@ contract Life is ERC20 {
         /// @dev insert minting logic to treasury, staking, distribution contracts here
     }
 
-    function mint(to, amount) external {
+    function mint(address to, uint256 amount) external {
         require(msg.sender == owner, "Only the owner can mint");
         require(totalSupply+amount<=maxSupply, "amount exceeds maximum supply");
         _mint(to, amount);
